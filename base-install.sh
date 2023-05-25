@@ -6,15 +6,7 @@ echo "1. Atualização do sistema"
 sudo apt-get update
 echo "> Atualização do sistema concluída"
 
-echo "2. Verificando se o curl e o snapd estão instalados. Caso não estejam, serão instalados"
-
-if ! [ -x "$(command -v curl)" ]; then
-    echo "> O curl não está instalado. Instalando..."
-    sudo apt install -y curl
-    echo "> Instalação do curl concluída"
-else
-    echo "> O curl já está instalado"
-fi
+echo "2. Verificando se o snapd estão instalados. Caso não esteja, serão instalados"
 
 if ! [ -x "$(command -v snap)" ]; then
     echo "> O snapd não está instalado. Instalando..."
