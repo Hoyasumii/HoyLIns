@@ -2,9 +2,7 @@
 
 echo "> Instalação do Node.js"
 
-echo "1. Atualização do sistema"
-sudo apt-get update
-echo "> Atualização do sistema concluída"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/basics.sh)"
 
 sudo apt-get install nodejs npm
 echo "> Instalação do Node.js concluída"

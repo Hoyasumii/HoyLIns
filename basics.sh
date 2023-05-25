@@ -1,3 +1,9 @@
+echo "1. Atualização do sistema"
+sudo apt-get update
+echo "> Atualização do sistema concluída"
+
+echo "2. Verificando se o snapd e o flatpak estão instalados. Caso não estejam, serão instalados"
+
 if ! [ -x "$(command -v snap)" ]; then
     echo "> O snapd não está instalado. Instalando..."
     sudo apt install -y snapd

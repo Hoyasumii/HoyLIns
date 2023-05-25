@@ -2,19 +2,7 @@
 
 echo "> Instalação inicial do sistema"
 
-echo "1. Atualização do sistema"
-sudo apt-get update
-echo "> Atualização do sistema concluída"
-
-echo "2. Verificando se o snapd estão instalados. Caso não esteja, serão instalados"
-
-if ! [ -x "$(command -v snap)" ]; then
-    echo "> O snapd não está instalado. Instalando..."
-    sudo apt install -y snapd
-    echo "> Instalação do snapd concluída"
-else
-    echo "> O snapd já está instalado"
-fi
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/basics.sh)"
 
 echo "3. Instalação e configuração do git"
 sudo apt install -y git

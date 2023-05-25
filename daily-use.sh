@@ -2,13 +2,7 @@
 
 echo "> Instalação dos aplicativos que são usados diariamente"
 
-echo "1. Atualização do sistema"
-sudo apt-get update
-echo "> Atualização do sistema concluída"
-
-echo "2. Verificando se o snapd e o flatpak estão instalados. Caso não estejam, serão instalados"
-
-
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/basics.sh)"
 
 echo "3. Instalação do Discord"
 sudo snap install discord
