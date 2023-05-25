@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Instalação inicial do sistema"
+echo "> Instalação inicial do sistema"
 
 echo "1. Atualização do sistema"
 sudo apt-get update
@@ -108,7 +108,7 @@ fi
 
 read -p "6. Você quer instalar o zsh e o oh-my-zsh para deixar o terminal mais bonito? (y/ANY) " zsh_install
 
-if [[ $zsh_install == "y" ]]; then
+if [ $zsh_install == "y" ]; then
     sudo apt install -y zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     echo "> Instalação do zsh e oh-my-zsh concluída"
