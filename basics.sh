@@ -16,7 +16,7 @@ if ! [ -x "$(command -v flatpak)" ]; then
     echo "> O flatpak não está instalado. Instalando..."
     sudo apt install -y flatpak
     
-    read -p "> Deseja instalar o plugin do flatpak para ele aparecer na loja do Ubuntu? (y/ANY) " flatpak_plugin
+    read -p "> Deseja instalar o plugin do flatpak para ele aparecer na Gnome Software? (y/ANY) " flatpak_plugin
     if [[ "$flatpak_plugin" == "y" ]]; then
         sudo apt install -y gnome-software-plugin-flatpak
     fi
