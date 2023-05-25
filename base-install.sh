@@ -32,7 +32,7 @@ while true; do
     read -p "3.1. Escolha o nome de usuário do git: " git_user
     read -p "3.2. Escolha o email do usuário do git: " git_email
 
-    if ! [[ "$git_user" == "" || "$git_email" == "" ]]; then
+    if ! [[ "$git_user" == "" ] || [ "$git_email" == "" ]]; then
         break
     else 
         echo "> Você precisa preencher os campos de usuário e email"
@@ -108,7 +108,7 @@ fi
 
 read -p "6. Você quer instalar o zsh e o oh-my-zsh para deixar o terminal mais bonito? (y/ANY) " zsh_install
 
-if [ $zsh_install == "y" ]; then
+if [[ $zsh_install == "y" ]]; then
     sudo apt install -y zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     echo "> Instalação do zsh e oh-my-zsh concluída"
