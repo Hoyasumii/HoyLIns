@@ -6,7 +6,7 @@ echo "1. Atualização do sistema"
 sudo apt-get update
 echo "> Atualização do sistema concluída"
 
-echo "2. Verificando se o curl e o snapd estão instalados"
+echo "2. Verificando se o curl e o snapd estão instalados. Caso não estejam, serão instalados"
 
 if ! [ -x "$(command -v curl)" ]; then
     echo "> O curl não está instalado. Instalando..."
@@ -28,21 +28,25 @@ echo "3. Instalação e configuração do git"
 sudo apt install -y git
 echo "> Instalação do git concluída"
 
-while true; do
-    read -p "3.1. Escolha o nome de usuário do git: " git_user
-    read -p "3.2. Escolha o email do usuário do git: " git_email
+read -p "3.1. Você quer configurar o git? (y/ANY) " git_config
 
-    if ! [[ "$git_user" == "" || "$git_email" == "" ]]; then
-        break
-    else 
-        echo "> Você precisa preencher os campos de usuário e email"
-    fi
-done
+if [[ "$git_config" == "y" ]]; then
+    while true; do
+        read -p "3.2. Escolha o nome de usuário do git: " git_user
+        read -p "3.3. Escolha o email do usuário do git: " git_email
 
-git config --global user.name "$git_user"
-git config --global user.email "$git_email"
+        if ! [[ "$git_user" == "" || "$git_email" == "" ]]; then
+            break
+        else 
+            echo "> Você precisa preencher os campos de usuário e email"
+        fi
+    done
 
-echo "> Configuração do git concluída"
+    git config --global user.name "$git_user"
+    git config --global user.email "$git_email"
+    
+    echo "> Configuração do git concluída"
+fi
 
 read -p "4. Você quer instalar o vscode? (y/ANY) " vscode_install
 
@@ -85,12 +89,16 @@ read -p "5. Você quer criar uma chave SSH para configuração do GitHub, BitBuc
 if [[ "$ssh_keys" == "y" ]]; then
     echo "5.1. Criando as chaves SSH"
 
-    read -p "5.1.1. Você quer usar o email do git para criar as chaves SSH? (y/ANY) " ssh_has_git_email
-
-    if [[ "$ssh_has_git_email" == "y" ]]; then
-        git_email=$git_email
+    if [[ "$git_email" == "" ]]; then
+        read -p "5.1.1. Digite o email que você quer usar para criar as chaves SSH: " git_email
     else
-        read -p "> Digite o email que você quer usar para criar as chaves SSH: " git_email
+        read -p "5.1.1. Você quer usar o email do git para criar as chaves SSH? (y/ANY) " ssh_has_git_email
+
+        if [[ "$ssh_has_git_email" == "y" ]]; then
+            git_email=$git_email
+        else
+            read -p "> Digite o email que você quer usar para criar as chaves SSH: " git_email
+        fi
     fi
 
     read -p "5.1.2. Escolha o nome da chave SSH: " ssh_key_name

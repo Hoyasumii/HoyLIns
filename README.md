@@ -8,3 +8,28 @@
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/base-install.sh)"
 ```
+### 2. Para uso cotidiano:
+- 
+```bash
+```
+### 3. Para desenvolvedores:
+> **Node.js**
+> ```bash
+> bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/install-node.sh)"
+> ```
+> **Python**
+> ```bash
+> bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/install-python.sh)"
+> ```
+> **Java**
+> ```bash
+> bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/install-java.sh)"
+> ```
+> **.NET**
+> ```bash
+> bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/install-dotnet.sh)"
+> ```
+> **PHP**
+> ```bash
+> bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/install-php.sh)"
+> ```
