@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# git, criação das chaves SSH, docker, docker-compose, code, zsh, oh-my-zsh
-
 echo "Instalação inicial do sistema"
 
 echo "1. Atualização do sistema"
@@ -30,8 +28,16 @@ echo "3. Instalação e configuração do git"
 sudo apt install -y git
 echo "> Instalação do git concluída"
 
-read -p "3.1. Escolha o nome de usuário do git: " git_user
-read -p "3.2. Escolha o email do usuário do git: " git_email
+while true; do
+    read -p "3.1. Escolha o nome de usuário do git: " git_user
+    read -p "3.2. Escolha o email do usuário do git: " git_email
+
+    if ! [[ "$git_user" == "" || "$git_email" == "" ]]; then
+        break
+    else 
+        echo "> Você precisa preencher os campos de usuário e email"
+    fi
+done
 
 git config --global user.name "$git_user"
 git config --global user.email "$git_email"
@@ -69,7 +75,8 @@ if [[ "$docker_install" == "y" ]]; then
     sudo apt-get update
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     echo "> Instalação do docker concluída"
-    read -n 1 -s -r -p "Dica: se quiser instalar também o Docker Desktop, acesse https://docs.docker.com/desktop/install/linux-install/\nPRESSIONE QUALQUER TECLA PARA CONTINUAR"
+    echo "> Dica: Se quiser instalar também o Docker Desktop, acesse https://docs.docker.com/desktop/install/linux-install/"
+    read -n 1 -s -r -p "PRESSIONE QUALQUER TECLA PARA CONTINUAR"
     echo "\n"
 fi
 
@@ -87,21 +94,28 @@ if [[ "$ssh_keys" == "y" ]]; then
     fi
 
     read -p "5.1.2. Escolha o nome da chave SSH: " ssh_key_name
-
     ssh-keygen -t ed25519 -b 4096 -C "$git_email" -f ~/.ssh/$ssh_key_name
-    # echo "5.2. Adicionando a chave SSH ao ssh-agent"
-    # eval "$(ssh-agent -s)"
-    # ssh-add ~/.ssh/id_rsa
     echo "> Chaves SSH criadas"
+    
+    echo "5.2. Adicionando a chave SSH ao ssh-agent"
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/$ssh_key_name
+    echo "> Chave SSH adicionada ao ssh-agent"
+
+    echo "> Copie o conteúdo da chave pública e adicione ao GitHub, BitBucket e afins"
+    cat ~/.ssh/$ssh_key_name.pub
 fi
 
-# Perguntar se quer criar as chaves SSH
+read -p "6. Você quer instalar o zsh e o oh-my-zsh para deixar o terminal mais bonito? (y/ANY) " zsh_install
 
-# read -p "6. Você quer instalar o zsh e o oh-my-zsh para deixar o terminal mais bonito? (y/ANY)" zsh_install
+if [[ $zsh_install == "y" ]]; then
+    sudo apt install -y zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    echo "> Instalação do zsh e oh-my-zsh concluída"
+    echo "> Dica: Se quiser deixar o terminal mais bonito ainda, instale o zsh-syntax-highlight"
+    read -n 1 -s -r -p "~ PRESSIONE QUALQUER TECLA PARA CONTINUAR"
+    echo "\n"
+fi
 
-# if [ $zsh_install == "y" ]; then
-#     sudo apt install -y zsh
-#     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-#     echo "Instalação do zsh e oh-my-zsh concluída"
-# fi
-
+echo "> Tudo foi instalado com sucesso!"
+echo "> Caso queira instalar outros programas, leia o README.md do repositório(https://github.com/Hoyasumii/essencial-ubuntu) e veja as opções disponíveis"
