@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "> Instalação inicial do sistema"
 
@@ -32,7 +32,7 @@ while true; do
     read -p "3.1. Escolha o nome de usuário do git: " git_user
     read -p "3.2. Escolha o email do usuário do git: " git_email
 
-    if ! [[ "$git_user" == "" ] || [ "$git_email" == "" ]]; then
+    if ! [[ "$git_user" == "" || "$git_email" == "" ]]; then
         break
     else 
         echo "> Você precisa preencher os campos de usuário e email"
