@@ -77,7 +77,7 @@ if [[ "$docker_install" == "y" ]]; then
     echo "> Instalação do docker concluída"
     echo "> Dica: Se quiser instalar também o Docker Desktop, acesse https://docs.docker.com/desktop/install/linux-install/"
     read -n 1 -s -r -p "PRESSIONE QUALQUER TECLA PARA CONTINUAR"
-    echo "\n"
+    echo ""
 fi
 
 read -p "5. Você quer criar uma chave SSH para configuração do GitHub, BitBucket e afins? (y/ANY) " ssh_keys
@@ -114,7 +114,7 @@ if [ "$zsh_install" == "y" ]; then
     echo "> Instalação do zsh e oh-my-zsh concluída"
     echo "> Dica: Se quiser deixar o terminal mais bonito ainda, instale o zsh-syntax-highlight"
     read -n 1 -s -r -p "~ PRESSIONE QUALQUER TECLA PARA CONTINUAR"
-    echo "\n"
+    echo ""
 fi
 
 echo "> Tudo foi instalado com sucesso!"
