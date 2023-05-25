@@ -10,7 +10,7 @@
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/base-install.sh)"
 ```
 ### 2. Para uso cotidiano:
-- Instala: `Discord`, `Spotify` e `Obsidian`
+- Instala: `Discord`, `Spotify`, `Obsidian` e `Solaar(para dispositivos Logitech)`
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/daily-use.sh)"
 ```

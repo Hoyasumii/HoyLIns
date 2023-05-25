@@ -19,5 +19,12 @@ if [[ "$obsidian_install" == "y" ]]; then
     echo "> Instalação do Obsidian concluída"
 fi
 
+read -p "6. Você possui algum aparelho da Logitech e precisa de um aplicativo para configurar? (y/ANY) " logitech_install
+
+if [[ "$logitech_install" == "y" ]]; then
+    sudo apt install solaar
+    echo "> Instalação do Solaar concluída"
+fi
+
 echo "> Tudo foi instalado com sucesso!"
 echo "> Caso queira instalar outros programas, leia o README.md do repositório(https://github.com/Hoyasumii/essencial-ubuntu) e veja as opções disponíveis"
