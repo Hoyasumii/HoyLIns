@@ -1,7 +1,13 @@
 ## Como usar?
 1. Abra o terminal
 2. Copie e cole o comando referente ao script que você deseja executar
-- **obs**: Todos os scripts também irão checar se o snapd e o flatpak estão instalados, caso não estejam, eles serão instalados.
+- **obs**: Os scripts relacionados a desenvolvimento apenas instalam os softwares básicos para produção, como o **kit de desenvolvimento** e o **runtime**.
+---
+## Pré-requisitos:
+1. Tenha o `curl` instalado
+```bash
+sudo apt install curl
+```
 ---
 ## Lista de scripts:
 ### 1. Essencial:

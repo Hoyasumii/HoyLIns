@@ -2,13 +2,11 @@
 
 echo "> Instalação do PHP"
 
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/basics.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/update-checker.sh)"
 
-echo "3. Instalação do PHP"
 sudo apt install php php-cli php-json php-xml php-curl php-mbstring -y
 echo "> PHP: instalado"
 
-echo "4. Instalação do Composer"
 curl -sS https://getcomposer.org/installer -o composer-setup.php
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 echo "> Composer: instalado"

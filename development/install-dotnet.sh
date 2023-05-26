@@ -2,7 +2,7 @@
 
 echo "> Instalação do .NET 7.0"
 
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/basics.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/update-checker.sh)"
 
 sudo apt-get install -y dotnet-sdk-7.0
 echo "> .NET SDK 7.0: instalado"
