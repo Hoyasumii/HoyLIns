@@ -12,7 +12,7 @@ sudo apt install curl
 ---
 ## Lista de scripts:
 ### 1. Essencial:
-- Instala e configura: `git`, `vscode`, `docker`, `chave SSH que será usada para o GitHub e Bitbucket`
+- Instala e configura: `git`, `vscode`, `docker`, `chave SSH que será usada para o GitHub e Bitbucket` e no final, pergunta se você deseja usar o script de desenvolvimento
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/base-install.sh)"
 ```
@@ -22,33 +22,13 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubun
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/daily-use.sh)"
 ```
-### 4. Para desenvolvedores:
-> **Node.js**
-> ```bash
-> bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/development/programming-languages/programming-languages/install-node.sh)"
-> ```
-> **Python**
-> ```bash
-> bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/development/programming-languages/install-python.sh)"
-> ```
-> **Java**
-> ```bash
-> bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/development/programming-languages/install-java.sh)"
-> ```
-> **.NET**
-> ```bash
-> bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/development/programming-languages/install-dotnet.sh)"
-> ```
-> **PHP**
-> ```bash
-> bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/development/programming-languages/install-php.sh)"
-> ```
-> **Rust**
-> ```bash
-> bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/development/programming-languages/install-rust.sh)"
-> ```
-### 5. Ferramentar para desenvolvedores:
+### 3. Para desenvolvedores:
+- Instala: `.NET`, `Java`, `Node.js`, `PHP`, `Python`, `Rust`, `C/C++`, `MySQL` e `PostgreSQL`
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/development-installer.sh)"
+```
+### 4. Ferramentar para desenvolvedores:
 - Instala: `Postman`, `Insomnia`, `DBeaver Community Edition`
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/development/programming-languages/development-tools.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/development-tools.sh)"
 ```

@@ -27,7 +27,7 @@ done
 
 echo "2. Preparando ambiente para instalação"
 
-sudo apt-get update
+sudo apt-get update -y
 
 echo "3. Instalando os programas selecionados"
 
@@ -52,7 +52,7 @@ if [[ "${answers[2]}" == "1" ]]; then
     "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
     sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-    sudo apt-get update
+    sudo apt-get update -y
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 fi
 
@@ -114,4 +114,5 @@ if [[ "$ssh_keys" == "y" ]]; then
     cat ~/.ssh/$ssh_key_name.pub > ~/$ssh_key_name.txt # Lança a chave pública em um arquivo de texto na home do usuário
 fi
 
-echo "- Instalação concluída com sucesso"
+echo "- Configuração concluída com sucesso!"
+echo "- Muito obrigado por usar esse script! Caso tenha gostado do script, deixe uma estrela no GitHub: https://github.com/Hoyasumii/essencial-ubuntu"

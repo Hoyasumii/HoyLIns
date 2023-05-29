@@ -22,25 +22,28 @@ function question() {
 
 counter=0
 for item in "${options[@]}"; do
-    if [[ $counter -ge 3 && $counter -le 6 ]]; then
-        if [[ "${answers[0]}" == "1" ]]; then
-            question "Navegador $item"
-        fi
-    else
-        question "$item"
-    fi
+    question "$item"
     answers+=($?)
     counter=$(($counter + 1))
 done
 
+echo "2. Preparando ambiente para instalação"
+sudo apt-get update -y
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/flatpak-checker.sh)"
 
-read -p "3. Você quer instalar o Postman? (y/ANY) " postman_install
+echo "3. Instalando os programas selecionados"
 
-if [ "$postman_install" == "y" ]; then
-    sudo snap install postman
-    echo "- Instalação do Postman concluída"
+if [[ "${answers[0]}" == "1" ]]; then
+    flatpak install flathub com.getpostman.Postman
 fi
-# TODO: Adicionar o DBeaver
-echo "- Instalação concluída"
-echo "- Caso queira instalar outros programas, leia o README.md do repositório(https://github.com/Hoyasumii/essencial-ubuntu) e veja as opções disponíveis"
+
+if [[ "${answers[1]}" == "1" ]]; then
+    flatpak install flathub com.insomnia.Insomnia
+fi
+
+if [[ "${answers[2]}" == "1" ]]; then
+    flatpak install flathub io.dbeaver.DBeaverCommunity
+fi
+
+echo "- Instalação finalizada!"
+echo "- Muito obrigado por usar esse script! Caso tenha gostado do script, deixe uma estrela no GitHub: https://github.com/Hoyasumii/essencial-ubuntu"

@@ -33,6 +33,7 @@ for item in "${options[@]}"; do
 done
 
 2. Preparando ambiente para instalação
+sudo apt-get update -y
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/flatpak-checker.sh)"
 
 echo "3. Instalando os programas selecionados"
@@ -84,4 +85,4 @@ if [[ "${answers[10]}" == "1" ]]; then
 fi
 
 echo "- Tudo foi instalado com sucesso!"
-echo "- Caso queira instalar outros programas, leia o README.md do repositório(https://github.com/Hoyasumii/essencial-ubuntu) e veja as opções disponíveis"
+echo "- Muito obrigado por usar esse script! Caso tenha gostado do script, deixe uma estrela no GitHub: https://github.com/Hoyasumii/essencial-ubuntu"
