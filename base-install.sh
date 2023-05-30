@@ -36,8 +36,8 @@ if [[ "${answers[0]}" == "1" ]]; then
 fi
 
 if [[ "${answers[1]}" == "1" ]]; then
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/flatpak-checker.sh)"
-    flatpak install flathub com.visualstudio.code -y
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/snap-checker.sh)"
+    sudo snap install code --classic
 fi
 
 if [[ "${answers[2]}" == "1" ]]; then

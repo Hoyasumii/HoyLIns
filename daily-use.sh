@@ -32,7 +32,7 @@ for item in "${options[@]}"; do
     counter=$(($counter + 1))
 done
 
-2. Preparando ambiente para instalação
+echo "2. Preparando ambiente para instalação"
 sudo apt-get update -y
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/flatpak-checker.sh)"
 
