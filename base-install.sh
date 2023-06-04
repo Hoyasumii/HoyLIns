@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 echo "- Instalação inicial do sistema"
 echo "1. Escolha o que você quer instalar:"
@@ -27,12 +27,12 @@ done
 
 echo "2. Preparando ambiente para instalação"
 
-sudo apt-get update -y
+
 
 echo "3. Instalando os programas selecionados"
 
 if [[ "${answers[0]}" == "1" ]]; then
-    sudo apt install -y git
+    sudo PKM install -y git
 fi
 
 if [[ "${answers[1]}" == "1" ]]; then
@@ -41,19 +41,19 @@ if [[ "${answers[1]}" == "1" ]]; then
 fi
 
 if [[ "${answers[2]}" == "1" ]]; then
-    sudo apt-get install ca-certificates gnupg -y
+    sudo PKM install ca-certificates gnupg -y
 
-    sudo install -m 0755 -d /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-    sudo chmod a+r /etc/apt/keyrings/docker.gpg
+    sudo install -m 0755 -d /etc/PKM/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/PKM/keyrings/docker.gpg
+    sudo chmod a+r /etc/PKM/keyrings/docker.gpg
 
     echo \
-    "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/PKM/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
     "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo tee /etc/PKM/sources.list.d/docker.list > /dev/null
 
-    sudo apt-get update -y
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+    
+    sudo PKM install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 fi
 
 echo "4. Configuração do ambiente"

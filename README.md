@@ -7,7 +7,7 @@
 ## Pré-requisitos:
 1. Tenha o `curl` instalado
 ```bash
-sudo apt install curl
+sudo PKM install curl
 ```
 ---
 ## Lista de scripts:
@@ -32,3 +32,9 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubun
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/development-tools.sh)"
 ```
+
+##### Implementar:
+    read -n 1 -p "- Deseja instalar o plugin do flatpak para ele aparecer na Gnome Software? (y/ANY) " flatpak_plugin
+    if [[ "$flatpak_plugin" == "y" ]]; then
+        sudo PKM install -y gnome-software-plugin-flatpak
+    fi

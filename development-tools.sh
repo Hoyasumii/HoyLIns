@@ -1,8 +1,8 @@
-#!/bin/bash
+
 
 echo "- Instalação de ferramentas de desenvolvimento"
 echo "- Instalação dos aplicativos que são usados diariamente"
-echo "- obs.: A instalação de todos os aplicativos, será por meio de flatpaks ou apt e o flatpak-checker, um script responsável por instalar o flatpak caso ele não esteja em sua máquina, será executado no início da instalação."
+echo "- obs.: A instalação de todos os aplicativos, será por meio de flatpaks ou PKM e o flatpak-checker, um script responsável por instalar o flatpak caso ele não esteja em sua máquina, será executado no início da instalação."
 echo "1. Escolha o que você quer instalar:"
 
 options=("Postman", "Insomnia", "DBeaver Community Edition")
@@ -28,7 +28,7 @@ for item in "${options[@]}"; do
 done
 
 echo "2. Preparando ambiente para instalação"
-sudo apt-get update -y
+
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/flatpak-checker.sh)"
 
 echo "3. Instalando os programas selecionados"

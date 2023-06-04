@@ -1,7 +1,7 @@
-#!/bin/bash
+
 
 echo "- Instalação dos aplicativos que são usados diariamente"
-echo "- obs.: A instalação de todos os aplicativos, será por meio de flatpaks ou apt e o flatpak-checker, um script responsável por instalar o flatpak caso ele não esteja em sua máquina, será executado no início da instalação."
+echo "- obs.: A instalação de todos os aplicativos, será por meio de flatpaks ou PKM e o flatpak-checker, um script responsável por instalar o flatpak caso ele não esteja em sua máquina, será executado no início da instalação."
 echo "1. Escolha o que você quer instalar:"
 
 options=("Discord", "Spotify", "Obsidian", "Google Chrome", "Microsoft Edge", "Mozilla Firefox", "Opera", "Solaar para configurar dispositivos da Logitech", "Steam", "Todoist", "MEGAsync")
@@ -33,7 +33,7 @@ for item in "${options[@]}"; do
 done
 
 echo "2. Preparando ambiente para instalação"
-sudo apt-get update -y
+
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/flatpak-checker.sh)"
 
 echo "3. Instalando os programas selecionados"
@@ -67,7 +67,7 @@ if [[ "${answers[6]}" == "1" ]]; then
 fi
 
 if [[ "${answers[7]}" == "1" ]]; then
-    sudo apt install solaar -y
+    sudo PKM install solaar -y
 fi
 
 if [[ "${answers[8]}" == "1" ]]; then
@@ -80,7 +80,7 @@ fi
 
 if [[ "${answers[10]}" == "1" ]]; then
     curl https://mega.nz/linux/repo/xUbuntu_23.04/amd64/megasync-xUbuntu_23.04_amd64.deb --output "MEGAsync.deb"
-    sudo apt install "MEGAsync.deb" -y
+    sudo PKM install "MEGAsync.deb" -y
     rm "MEGAsync.deb"
 fi
 

@@ -1,10 +1,4 @@
-#!/bin/bash
-
-echo "- Instalação do Build Essential: GCC, make, G++, dpkg-dev, etc. "
-
-sudo apt-get update -y
-
-sudo apt install build-essential -y
-
-echo "- Instalação do build-essential concluída com sucesso!"
+echo "- Instalação do GCC(C/C++)"
+sudo PKM install gcc -y
+echo "- Instalação do GCC concluída com sucesso!"
  
