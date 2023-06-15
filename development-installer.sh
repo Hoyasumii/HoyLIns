@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 echo "- Instalador para desenvolvedores"
 echo "1. Escolha quais linguagens de programação que serão instaladas:"

@@ -1,94 +1,84 @@
+#!/bin/bash
 
+echo "- HoyLins: Instalação base"
+read -n 1 -p "1. O script irá instalar e configurar os seguintes programas: Git, Docker e as linguagens de programação que você escolher. Deseja continuar? " initial_answer
+echo ""
 
-echo "- Instalação inicial do sistema"
-echo "1. Escolha o que você quer instalar:"
+# Ele vai verificar  qual dos gerenciadores de pacotes está instalado e vai usar ele. Caso não seja apt ou dnf, ele vai avisar que o script não tem suporte
 
-options=("git", "vscode", "docker")
-answers=()
-
-function question() {
-
-    read -n 1 -p "- $1 (y/ANY) " answer
-    echo ""
-    if [[ "$answer" == "y" ]]; then
-        return 1
-    else
-        return 0
-    fi
-    
-}
-
-counter=0
-for item in "${options[@]}"; do
-    question "$item"
-    answers+=($?)
-    counter=$(($counter + 1))
-done
-
-echo "2. Preparando ambiente para instalação"
-
-
-
-echo "3. Instalando os programas selecionados"
-
-if [[ "${answers[0]}" == "1" ]]; then
-    sudo PKM install -y git
+if [ -x "$(command -v apt)" ]; then
+    package="apt"
+elif [ -x "$(command -v dnf)" ]; then
+    package="dnf"
+else
+    echo "- O gerenciador de pacotes do seu sistema não é suportado por esse script. Caso você queira adicionar suporte para o seu gerenciador de pacotes, abra uma issue no GitHub: https://github.com/Hoyasumii/HoyLins/issues/new"
+    exit 1
 fi
 
-if [[ "${answers[1]}" == "1" ]]; then
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Hoyasumii/essencial-ubuntu/main/snap-checker.sh)"
-    sudo snap install code --classic
+# if [[ "$git_config" == "y" ]]; then
+if [[ "$initial_answer" != "y" ]]; then
+    echo "- Obrigado por usar o script!"
+    exit 0
 fi
 
-if [[ "${answers[2]}" == "1" ]]; then
-    sudo PKM install ca-certificates gnupg -y
+sudo $package update -y
 
-    sudo install -m 0755 -d /etc/PKM/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/PKM/keyrings/docker.gpg
-    sudo chmod a+r /etc/PKM/keyrings/docker.gpg
+sudo $package install -y git 
+echo "- Git instalado"
 
+exit 0
+
+if [[ "$package" == 'apt' ]]; then
+    sudo apt install ca-certificates gnupg
+    sudo install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    sudo chmod a+r /etc/apt/keyrings/docker.gpg
     echo \
-    "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/PKM/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
     "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-    sudo tee /etc/PKM/sources.list.d/docker.list > /dev/null
-
-    
-    sudo PKM install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt update -y
+    sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+else
+    sudo dnf -y install dnf-plugins-core
+    sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+    sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 fi
 
-echo "4. Configuração do ambiente"
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
 
-if [[ "${answers[0]}" == "1" ]]; then
-    read -n 1 -p "- Você quer configurar o git? (y/ANY) " git_config
-    echo ""
+echo "- Docker instalado"
 
-    if [[ "$git_config" == "y" ]]; then
-        while true; do
-            read -p "- Escolha o nome de usuário do git: " git_user
-            read -p "- Escolha o email do usuário do git: " git_email
+echo "2. Configuração do ambiente"
 
-            if ! [[ "$git_user" == "" || "$git_email" == "" ]]; then
-                break
-            else 
-                echo "- Você precisa preencher os campos de usuário e email"
-            fi
-        done
+read -n 1 -p "- Você quer configurar o git? (y/ANY) " git_config
+echo ""
 
-        git config --global user.name "$git_user"
-        git config --global user.email "$git_email"
-        git config --global init.defaultBranch main
-        
-        echo "- Git configurado"
-        echo "##############################################"
-    fi
+if [[ "$git_config" == "y" ]]; then
+    while true; do
+        read -p "- Escolha o nome de usuário do git: " git_user
+        read -p "- Escolha o email do usuário do git: " git_email
+
+        if ! [[ "$git_user" == "" || "$git_email" == "" ]]; then
+            break
+        else 
+            echo "- Você precisa preencher os campos de usuário e email"
+        fi
+    done
+
+    git config --global user.name "$git_user"
+    git config --global user.email "$git_email"
+    git config --global init.defaultBranch main
+    
+    echo "- Git configurado"
 fi
 
 read -n 1 -p "- Você quer criar uma chave SSH para configuração do GitHub, BitBucket e afins? (y/ANY) " ssh_keys
 echo ""
 
 if [[ "$ssh_keys" == "y" ]]; then
-    echo "- Criando as chaves SSH"
-
     if [[ "$git_email" == "" ]]; then
         read -p "- Digite o email que você quer usar para criar as chaves SSH: " git_email
     else
@@ -115,4 +105,8 @@ if [[ "$ssh_keys" == "y" ]]; then
 fi
 
 echo "- Configuração concluída com sucesso!"
-echo "- Muito obrigado por usar esse script! Caso tenha gostado do script, deixe uma estrela no GitHub: https://github.com/Hoyasumii/essencial-ubuntu"
+
+echo "3. Instalação de linguagens de programação"
+
+
+echo "- Muito obrigado por usar esse script! Caso tenha gostado do script, deixe uma estrela no GitHub: https://github.com/Hoyasumii/HoyLins"

@@ -1,0 +1,4 @@
+META:
+1. O script irá instalar e configurar: Git, Docker, chaves SSH. Além do mais, irá perguntar quais linguagens de programação e SGBDs o usuário deseja instalar.
+
+

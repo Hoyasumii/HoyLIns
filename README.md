@@ -1,14 +1,30 @@
+# HoyLIns
+- **Hoy**asumii's **L**inux **Ins**taller
+- Um script que instala e configura tudo que um desenvolvedor precisa em um sistema Linux.
+- **obs**: O script foi feito para ser usado em sistemas baseados com os gerenciadores de pacotes **apt (Ubuntu, Debian, PopOS)** ou **dnf (Fedora, Red Hat Entreprise Linux)**. Se você usa outro gerenciador de pacote, como o **pacman**, sinta-se livre para adaptar o script para sua distro.
+---
+## Como funciona?
+- O script irá perguntar o que você deseja fazer e irá instalar tudo que você pedir.
+- **obs**: O script não irá instalar nada sem sua permissão.
+---
+## Pré-requisitos:
+1. Verifique se o `curl` está instalado
+```bash
+curl --version
+```
+2. Caso não esteja instalado, instale-o
+```bash
+sudo apt install curl
+```
+ou
+```bash
+sudo dnf install curl
+```
+---
 ## Como usar?
 1. Abra o terminal
 2. Copie e cole o comando referente ao script que você deseja executar
 - **obs**: Os scripts relacionados a desenvolvimento apenas instalam os softwares básicos para produção, como o **kit de desenvolvimento** e o **runtime**.
-3. Sobre os scripts: Eles irão perguntar o que você quer fazer. **Nenhum deles irá instalar algo em sua máquina sem sua permissão**.
----
-## Pré-requisitos:
-1. Tenha o `curl` instalado
-```bash
-sudo PKM install curl
-```
 ---
 ## Lista de scripts:
 ### 1. Essencial:
